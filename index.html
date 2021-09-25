@@ -9,7 +9,7 @@
         var step = 1;
         function dianwo(div_name) {
             var obj = document.getElementById(div_name);
-            var x = obj.offsetLeft
+            var x = obj.offsetLeft;
             var y = obj.offsetTop;
             if (x <= 0) {
                 left_right = 0;
@@ -43,7 +43,7 @@
             setInterval('dianwo("mydiv1")', 1);
         }
         function py() {
-            window.open('pyparty/party.html')
+            window.open('pyparty/party.html');
         }
         window.onload = show;
 
@@ -64,7 +64,7 @@
 
 <body bgcolor="black">
     <div id="mydiv1" onclick="py()" class="class1">
-        <img src="PY.png">
+        <img src="pyparty/picture/PY.png">
     </div>
 </body>
 
