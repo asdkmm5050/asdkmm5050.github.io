@@ -40,12 +40,16 @@
 
         }
         function show() {
+			var obj = document.getElementById("mydiv1");
+			obj.style.left = Math.floor(Math.random() * document.body.clientWidth);
+			obj.style.top = Math.floor(Math.random() * document.body.clientHeight);
             setInterval('dianwo("mydiv1")', 1);
         }
         function py() {
             window.open('pyparty/party.html');
         }
         window.onload = show;
+		
 
     </script>
     <style type="text/css">
