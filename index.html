@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <title>asdkmm5050's website</title>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        var up_down = 0;
+        var left_right = 0;
+        var step = 1;
+        function dianwo(div_name) {
+            var obj = document.getElementById(div_name);
+            var x = obj.offsetLeft
+            var y = obj.offsetTop;
+            if (x <= 0) {
+                left_right = 0;
+            }
+            if (x + 331 >= document.body.clientWidth) {
+                left_right = 1;
+            }
+            if (y <= 0) {
+                up_down = 0;
+            }
+            if (y + 150 >= document.body.clientHeight) {
+                up_down = 1;
+            }
+            if (up_down) {
+                y -= step;
+            }
+            else {
+                y += step;
+            }
+            if (left_right) {
+                x -= step;
+            }
+            else {
+                x += step;
+            }
+            obj.style.left = x;
+            obj.style.top = y;
+
+        }
+        function show() {
+            setInterval('dianwo("mydiv1")', 1);
+        }
+        function py() {
+            window.open('pyparty/party.html')
+        }
+        window.onload = show;
+
+    </script>
+    <style type="text/css">
+        .class1 {
+            width: 331px;
+            height: 150px;
+            cursor: pointer;
+            background-color: black;
+            text-emphasis-color: white;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body bgcolor="black">
+    <div id="mydiv1" onclick="py()" class="class1">
+        <img src="PY.png">
+    </div>
+</body>
+
+</html>
