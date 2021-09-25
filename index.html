@@ -7,6 +7,9 @@
         var up_down = 0;
         var left_right = 0;
         var step = 1;
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
         function dianwo(div_name) {
             var obj = document.getElementById(div_name);
             var x = obj.offsetLeft;
@@ -40,16 +43,16 @@
 
         }
         function show() {
-			var obj = document.getElementById("mydiv1");
-			obj.style.left = Math.floor(Math.random() * document.body.clientWidth);
-			obj.style.top = Math.floor(Math.random() * document.body.clientHeight);
+            var obj = document.getElementById("mydiv1");
+            obj.style.left = Math.floor(getRandomArbitrary(0, document.body.clientWidth - 331));
+            obj.style.top = Math.floor(getRandomArbitrary(0, document.body.clientHeight -150));
             setInterval('dianwo("mydiv1")', 1);
         }
         function py() {
             window.open('pyparty/party.html');
         }
         window.onload = show;
-		
+
 
     </script>
     <style type="text/css">
