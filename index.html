@@ -6,35 +6,37 @@
     <link rel="icon" href="./pyparty/picture/32x32.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="./pyparty/picture/128x128.ico" type="image/x-icon" />
     <script type="text/javascript">
-        var up_down = 0;
-        var left_right = 0;
         var step = 1;
+
         function getRandomArbitrary(min, max) {
             return Math.random() * (max - min) + min;
         }
-        function dianwo(div_name) {
-            var obj = document.getElementById(div_name);
+        function move_div(number) {
+
+            var obj = document.getElementById("mydiv"+number);
+            var left_right = document.getElementById("left_right"+number);
+            var up_down = document.getElementById("up_down"+number);
             var x = obj.offsetLeft;
             var y = obj.offsetTop;
             if (x <= 0) {
-                left_right = 0;
+                left_right.innerText = 0;
             }
-            if (x + 331 >= document.body.clientWidth) {
-                left_right = 1;
+            if (x >= (document.body.clientWidth - obj.clientWidth)) {
+                left_right.innerText = 1;
             }
             if (y <= 0) {
-                up_down = 0;
+                up_down.innerText = 0;
             }
-            if (y + 150 >= document.body.clientHeight) {
-                up_down = 1;
+            if (y >= (document.body.clientHeight - obj.clientHeight)) {
+                up_down.innerText = 1;
             }
-            if (up_down) {
+            if (up_down.innerText == "1") {
                 y -= step;
             }
             else {
                 y += step;
             }
-            if (left_right) {
+            if (left_right.innerText == "1") {
                 x -= step;
             }
             else {
@@ -43,14 +45,41 @@
             obj.style.left = x;
             obj.style.top = y;
 
+            console.log(x, document.body.clientWidth - obj.clientWidth)
+            console.log(left_right, up_down)
+
         }
+        function set_obj(div_name) {
+            var obj = document.getElementById(div_name);
+            document.getElementById(div_name).style.left = Math.floor(getRandomArbitrary(0, document.body.clientWidth - obj.clientWidth));
+            document.getElementById(div_name).style.top = Math.floor(getRandomArbitrary(0, document.body.clientHeight - obj.clientHeight));
+        }
+
+        
         function show() {
-            var obj = document.getElementById("mydiv1");
-            obj.style.left = Math.floor(getRandomArbitrary(0, document.body.clientWidth - 331));
-            obj.style.top = Math.floor(getRandomArbitrary(0, document.body.clientHeight - 150));
-            setInterval('dianwo("mydiv1")', 1);
+
+            set_obj("mydiv1");
+            setInterval('move_div(1)', 1);
+            set_obj("mydiv2");
+            setInterval('move_div(2)', 1);
+            set_obj("mydiv3");
+            setInterval('move_div(3)', 1);
+            set_obj("mydiv4");
+            setInterval('move_div(4)', 1);
+            set_obj("mydiv5");
+            setInterval('move_div(5)', 1);
+            set_obj("mydiv6");
+            setInterval('move_div(6)', 1);
+            set_obj("mydiv7");
+            setInterval('move_div(7)', 1);
+            set_obj("mydiv8");
+            setInterval('move_div(8)', 1);
+            set_obj("mydiv9");
+            setInterval('move_div(9)', 1);
+            set_obj("mydiv10");
+            setInterval('move_div(10)', 1);
         }
-        function py() {
+        function click_div() {
             window.open('pyparty/party.html');
         }
         window.onload = show;
@@ -59,10 +88,8 @@
     </script>
     <style type="text/css">
         .class1 {
-            width: 331px;
-            height: 150px;
             cursor: pointer;
-            background-color: black;
+            background-color: rgba(255, 255, 255, 0);
             text-emphasis-color: white;
             position: absolute;
             left: 0px;
@@ -72,9 +99,55 @@
 </head>
 
 <body bgcolor="black">
-    <div id="mydiv1" onclick="py()" class="class1">
-        <! --<img src="pyparty/picture/PY.png">-->
-        <font color="white" size="7">HI</font>
+    <div id="mydiv1" onclick="click_div()" class="class1">
+        <font color="white" size="7">HELLO</font>
+        <div id="up_down1" style="display: none">0</div>
+        <div id="left_right1" style="display: none">0</div>
+    </div>
+    <div id="mydiv2" onclick="click_div()" class="class1">
+        <font color="white" size="7">你好</font>
+        <div id="up_down2" style="display: none">1</div>
+        <div id="left_right2" style="display: none">0</div>
+    </div>
+    <div id="mydiv3" onclick="click_div()" class="class1">
+        <font color="white" size="7">hola</font>
+        <div id="up_down3" style="display: none">0</div>
+        <div id="left_right3" style="display: none">1</div>
+    </div>
+    <div id="mydiv4" onclick="click_div()" class="class1">
+        <font color="white" size="7">Bonjour</font>
+        <div id="up_down4" style="display: none">1</div>
+        <div id="left_right4" style="display: none">1</div>
+    </div>
+    <div id="mydiv5" onclick="click_div()" class="class1">
+        <font color="white" size="7">こんにちは</font>
+        <div id="up_down5" style="display: none">0</div>
+        <div id="left_right5" style="display: none">1</div>
+    </div>
+    <div id="mydiv6" onclick="click_div()" class="class1">
+        <font color="white" size="7">привет</font>
+        <div id="up_down6" style="display: none">1</div>
+        <div id="left_right6" style="display: none">1</div>
+    </div>
+    <div id="mydiv7" onclick="click_div()" class="class1">
+        <font color="white" size="7">สวัสดี</font>
+        <div id="up_down7" style="display: none">0</div>
+        <div id="left_right7" style="display: none">0</div>
+    </div>
+    <div id="mydiv8" onclick="click_div()" class="class1">
+        <font color="white" size="7">안녕하세요</font>
+        <div id="up_down8" style="display: none">0</div>
+        <div id="left_right8" style="display: none">0</div>
+    </div>
+    <div id="mydiv9" onclick="click_div()" class="class1">
+        <font color="white" size="7">Xin chào</font>
+        <div id="up_down9" style="display: none">1</div>
+        <div id="left_right9" style="display: none">0</div>
+    </div>
+    <div id="mydiv10" onclick="click_div()" class="class1">
+        <font color="white" size="7">مرحبًا</font>
+        <div id="up_down10" style="display: none">1</div>
+        <div id="left_right10" style="display: none">0</div>
     </div>
 </body>
 
