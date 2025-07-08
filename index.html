@@ -353,11 +353,38 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .greeting-text {
+            position: absolute;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            z-index: 1;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .greeting-text:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 
 <body>
     <div class="particles" id="particles"></div>
+    
+    <div id="greeting1" class="greeting-text">Hello</div>
+    <div id="greeting2" class="greeting-text">你好</div>
+    <div id="greeting3" class="greeting-text">Hola</div>
+    <div id="greeting4" class="greeting-text">Bonjour</div>
+    <div id="greeting5" class="greeting-text">こんにちは</div>
+    <div id="greeting6" class="greeting-text">привет</div>
+    <div id="greeting7" class="greeting-text">สวัสดี</div>
+    <div id="greeting8" class="greeting-text">안녕하세요</div>
+    <div id="greeting9" class="greeting-text">Xin chào</div>
+    <div id="greeting10" class="greeting-text">مرحبًا</div>
     
     <header>
         <nav class="container">
@@ -520,9 +547,62 @@
             });
         }
 
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function moveGreeting(id) {
+            const greeting = document.getElementById(id);
+            if (!greeting) return;
+            
+            const directionX = parseFloat(greeting.dataset.directionX) || 1;
+            const directionY = parseFloat(greeting.dataset.directionY) || 1;
+            
+            let currentLeft = parseFloat(greeting.style.left) || 0;
+            let currentTop = parseFloat(greeting.style.top) || 0;
+            
+            const maxWidth = window.innerWidth - greeting.offsetWidth;
+            const maxHeight = window.innerHeight - greeting.offsetHeight;
+            
+            currentLeft += directionX * 1;
+            currentTop += directionY * 1;
+            
+            if (currentLeft <= 0) {
+                greeting.dataset.directionX = 1;
+                currentLeft = 0;
+            } else if (currentLeft >= maxWidth) {
+                greeting.dataset.directionX = -1;
+                currentLeft = maxWidth;
+            }
+            
+            if (currentTop <= 0) {
+                greeting.dataset.directionY = 1;
+                currentTop = 0;
+            } else if (currentTop >= maxHeight) {
+                greeting.dataset.directionY = -1;
+                currentTop = maxHeight;
+            }
+            
+            greeting.style.left = currentLeft + 'px';
+            greeting.style.top = currentTop + 'px';
+        }
+
+        function initializeGreetings() {
+            const greetings = document.querySelectorAll('.greeting-text');
+            greetings.forEach((greeting, index) => {
+                greeting.style.left = Math.floor(getRandomArbitrary(0, window.innerWidth - greeting.offsetWidth)) + 'px';
+                greeting.style.top = Math.floor(getRandomArbitrary(0, window.innerHeight - greeting.offsetHeight)) + 'px';
+                greeting.dataset.directionX = Math.random() > 0.5 ? 1 : -1;
+                greeting.dataset.directionY = Math.random() > 0.5 ? 1 : -1;
+                
+                setInterval(() => moveGreeting(greeting.id), 10);
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             smoothScroll();
+            initializeGreetings();
         });
     </script>
 </body>
