@@ -1,152 +1,542 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>asdkmm5050's website</title>
-    <meta charset="utf-8">
-    <link rel="icon" href="./pyparty/picture/32x32.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="./pyparty/picture/128x128.ico" type="image/x-icon" />
-    <script type="text/javascript">
-        var step = 1;
-
-        function getRandomArbitrary(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-        function move_div(number) {
-
-            var obj = document.getElementById("mydiv"+number);
-            var left_right = document.getElementById("left_right"+number);
-            var up_down = document.getElementById("up_down"+number);
-            var x = obj.offsetLeft;
-            var y = obj.offsetTop;
-
-            if (x <= 0) {
-                left_right.innerText = 0;
-            }
-            if (x >= (document.body.clientWidth - obj.clientWidth)) {
-                left_right.innerText = 1;
-            }
-            if (y <= 0) {
-                up_down.innerText = 0;
-            }
-            if (y >= (document.body.clientHeight - obj.clientHeight)) {
-                up_down.innerText = 1;
-            }
-            if (up_down.innerText == "1") {
-                y -= step;
-            }
-            else {
-                y += step;
-            }
-            if (left_right.innerText == "1") {
-                x -= step;
-            }
-            else {
-                x += step;
-            }
-            obj.style.left = x;
-            obj.style.top = y;
-
-        }
-        function set_obj(div_name) {
-            var obj = document.getElementById(div_name);
-            document.getElementById(div_name).style.left = Math.floor(getRandomArbitrary(0, document.body.clientWidth - obj.clientWidth));
-            document.getElementById(div_name).style.top = Math.floor(getRandomArbitrary(0, document.body.clientHeight - obj.clientHeight));
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWX | Developer Portfolio</title>
+    <link rel="icon" href="./NKUST-110-1/picture/32x32.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./NKUST-110-1/picture/128x128.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        
-        function show() {
-
-            set_obj("mydiv1");
-            setInterval('move_div(1)', 1);
-            set_obj("mydiv2");
-            setInterval('move_div(2)', 1);
-            set_obj("mydiv3");
-            setInterval('move_div(3)', 1);
-            set_obj("mydiv4");
-            setInterval('move_div(4)', 1);
-            set_obj("mydiv5");
-            setInterval('move_div(5)', 1);
-            set_obj("mydiv6");
-            setInterval('move_div(6)', 1);
-            set_obj("mydiv7");
-            setInterval('move_div(7)', 1);
-            set_obj("mydiv8");
-            setInterval('move_div(8)', 1);
-            set_obj("mydiv9");
-            setInterval('move_div(9)', 1);
-            set_obj("mydiv10");
-            setInterval('move_div(10)', 1);
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        function click_div() {
-            window.open('pyparty/party.html');
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        window.onload = show;
 
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    </script>
-    <style type="text/css">
-        .class1 {
-            cursor: pointer;
-            background-color: rgba(255, 255, 255, 0);
-            text-emphasis-color: white;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #64ffda;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #64ffda;
+        }
+
+        .nav-links a::after {
+            content: '';
             position: absolute;
-            left: 0px;
-            top: 0px;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #64ffda;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #64ffda, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #8892b0;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            color: #a8b2d1;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #64ffda, #00bcd4);
+            color: #0c0c0c;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #64ffda;
+        }
+
+        .about {
+            background: #111111;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #a8b2d1;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+
+        .projects {
+            background: #0c0c0c;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #64ffda;
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #a8b2d1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            color: #64ffda;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .contact {
+            background: #111111;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-description {
+            font-size: 1.1rem;
+            color: #a8b2d1;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            text-decoration: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: #64ffda;
+            color: #0c0c0c;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: #0c0c0c;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #64ffda;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
-<body bgcolor="black">
-    <div id="mydiv1" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">Hello</font>
-        <div id="up_down1" style="display: none">0</div>
-        <div id="left_right1" style="display: none">0</div>
-    </div>
-    <div id="mydiv2" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">你好</font>
-        <div id="up_down2" style="display: none">1</div>
-        <div id="left_right2" style="display: none">0</div>
-    </div>
-    <div id="mydiv3" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">Hola</font>
-        <div id="up_down3" style="display: none">0</div>
-        <div id="left_right3" style="display: none">1</div>
-    </div>
-    <div id="mydiv4" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">Bonjour</font>
-        <div id="up_down4" style="display: none">1</div>
-        <div id="left_right4" style="display: none">1</div>
-    </div>
-    <div id="mydiv5" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">こんにちは</font>
-        <div id="up_down5" style="display: none">0</div>
-        <div id="left_right5" style="display: none">1</div>
-    </div>
-    <div id="mydiv6" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">привет</font>
-        <div id="up_down6" style="display: none">1</div>
-        <div id="left_right6" style="display: none">1</div>
-    </div>
-    <div id="mydiv7" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">สวัสดี</font>
-        <div id="up_down7" style="display: none">0</div>
-        <div id="left_right7" style="display: none">0</div>
-    </div>
-    <div id="mydiv8" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">안녕하세요</font>
-        <div id="up_down8" style="display: none">0</div>
-        <div id="left_right8" style="display: none">0</div>
-    </div>
-    <div id="mydiv9" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">Xin chào</font>
-        <div id="up_down9" style="display: none">1</div>
-        <div id="left_right9" style="display: none">0</div>
-    </div>
-    <div id="mydiv10" onclick="click_div()" class="class1">
-        <font color="white" face="微軟正黑體" size="7">مرحبًا</font>
-        <div id="up_down10" style="display: none">1</div>
-        <div id="left_right10" style="display: none">0</div>
-    </div>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">WWX</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm WWX</h1>
+            <p class="subtitle">Developer & Creator</p>
+            <p class="description">
+                I'm a passionate developer from the Milky Way Galaxy, creating innovative solutions with code. 
+                Currently exploring web development, Python applications, and various programming challenges.
+            </p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a developer passionate about creating digital experiences that make a difference. With a strong foundation in multiple programming languages and frameworks, I enjoy tackling complex problems and building innovative solutions.</p>
+                    <br>
+                    <p>My journey in programming has led me to explore various domains, from web development to application design. I believe in writing clean, efficient code and continuously learning new technologies to stay ahead in this ever-evolving field.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Followers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">51</div>
+                        <div class="stat-label">Following</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">TeamT5</div>
+                        <div class="stat-label">Organization</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Achievements</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 class="project-title">Discord TTS Bot</h3>
+                    <p class="project-description">A Discord bot that converts text to speech, enhancing communication in voice channels with natural-sounding voice synthesis.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Discord.py</span>
+                        <span class="tech-tag">TTS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/asdkmm5050/discordTTSBot" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title">NKUST Web App</h3>
+                    <p class="project-description">A comprehensive web application developed for NKUST coursework, showcasing modern web development practices and user interface design.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">ASP.NET</span>
+                        <span class="tech-tag">Web Development</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/asdkmm5050/NKUST-109-2-WEB-APP" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3 class="project-title">Data Visualization Project</h3>
+                    <p class="project-description">Interactive HTML-based data visualization showcasing Taiwan's regional information with dynamic maps and user-friendly interface.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/asdkmm5050/NKUST-110-1" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="./NKUST-110-1/index.html" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p class="contact-description">
+                    I'm always interested in new opportunities and collaborations. Whether you have a project in mind or just want to say hello, feel free to reach out!
+                </p>
+                <a href="mailto:contact@asdkmm5050.github.io" class="btn">Say Hello</a>
+                <div class="social-links">
+                    <a href="https://github.com/asdkmm5050" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://twitter.com/asdkmm5050" target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://asdkmm5050.github.io" target="_blank" title="Website">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2024 WWX. Built with passion and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        function smoothScroll() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            smoothScroll();
+        });
+    </script>
 </body>
 
 </html>
