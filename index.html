@@ -151,9 +151,8 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            display: flex;
+            justify-content: center;
             align-items: center;
         }
 
@@ -165,8 +164,9 @@
 
         .about-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
+            max-width: 800px;
         }
 
         .stat-item {
@@ -346,11 +346,12 @@
                 font-size: 2.5rem;
             }
             
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
-            
+        }
+        
+        @media (max-width: 480px) {
             .about-stats {
                 grid-template-columns: 1fr;
             }
@@ -376,10 +377,9 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Hi, I'm WWX</h1>
-            <p class="subtitle">Developer & Creator</p>
+            <p class="subtitle">C++ Engineer & Developer</p>
             <p class="description">
-                I'm a passionate developer from the Milky Way Galaxy, creating innovative solutions with code. 
-                Currently exploring web development, Python applications, and various programming challenges.
+                I'm WWX, a C++ engineer passionate about system programming and software development.
             </p>
             <a href="#projects" class="btn">View My Work</a>
         </div>
@@ -389,8 +389,6 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <div class="about-text">
-                </div>
                 <div class="about-stats">
                     <div class="stat-item">
                         <div class="stat-number">18</div>
